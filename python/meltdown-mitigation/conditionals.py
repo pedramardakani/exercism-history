@@ -1,17 +1,8 @@
 """Functions to prevent a nuclear meltdown."""
 
-from enum import Enum
 from typing import Union
 
 num_type = Union[int, float]
-
-
-class EfficiencyBands(Enum):
-    """Bands used to show the efficiency level."""
-    ONE = 'green'
-    TWO = 'orange'
-    THREE = 'red'
-    FOUR = 'black'
 
 
 def is_criticality_balanced(temperature: num_type,
@@ -69,14 +60,12 @@ def reactor_efficiency(voltage: num_type, current: num_type, theoretical_max_pow
         generated_power(voltage, current) / theoretical_max_power
 
     if efficiency >= 80:
-        band = EfficiencyBands.ONE
-    elif efficiency >= 60:
-        band = EfficiencyBands.TWO
-    elif efficiency >= 30:
-        band = EfficiencyBands.THREE
-    else:
-        band = EfficiencyBands.FOUR
-    return band.value
+        return 'green'
+    if efficiency >= 60:
+        return 'orange'
+    if efficiency >= 30:
+        return 'red'
+    return 'black'
 
 
 def isLow(status: num_type, threshold: num_type) -> bool:
