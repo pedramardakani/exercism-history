@@ -14,13 +14,6 @@ class EfficiencyBands(Enum):
     FOUR = 'black'
 
 
-class StatusCodes(Enum):
-    """Status codes for the fail-safe checking."""
-    LOW = 'LOW'
-    NORMAL = 'NORMAL'
-    DANGER = 'DANGER'
-
-
 def is_criticality_balanced(temperature: num_type,
                             neutrons_emitted: num_type) -> bool:
     """Verify criticality is balanced.
@@ -86,6 +79,24 @@ def reactor_efficiency(voltage: num_type, current: num_type, theoretical_max_pow
     return band.value
 
 
+def isLow(status: num_type, threshold: num_type) -> bool:
+    """Check if is in fail-safe 'low' condition.
+
+    :param status: int or float - current status to be compared with the threshold.
+    :param threshold: int or float - current threshold.
+    :return: bool - if status should be considered low or not."""
+    return status < 0.9 * threshold
+
+
+def isNormal(status: num_type, threshold: num_type) -> bool:
+    """Check if is in fail-safe 'normal' condition.
+
+    :param status: int or float - current status to be compared with the threshold.
+    :param threshold: int or float - current threshold.
+    :return: bool - if status should be considered normal or not."""
+    return (status <= 1.1 * threshold) and (status >= 0.9 * threshold)
+
+
 def fail_safe(temperature: num_type,
               neutrons_produced_per_second: num_type,
               threshold: num_type) -> str:
@@ -94,18 +105,11 @@ def fail_safe(temperature: num_type,
     :param temperature: int or float - value of the temperature in kelvin.
     :param neutrons_produced_per_second: int or float - neutron flux.
     :param threshold: int or float - threshold for category.
-    :return: str - one of ('LOW', 'NORMAL', 'DANGER').
-
-    1. 'LOW' -> `temperature * neutrons per second` < 90% of `threshold`
-    2. 'NORMAL' -> `temperature * neutrons per second` +/- 10% of `threshold`
-    3. 'DANGER' -> `temperature * neutrons per second` is not in the above-stated ranges
-    """
+    :return: str - one of ('LOW', 'NORMAL', 'DANGER')."""
     status = temperature * neutrons_produced_per_second
 
-    if status < 0.9 * threshold:
-        status_code = StatusCodes.LOW
-    elif status < 1.1 * threshold and status > 0.9 * threshold:
-        status_code = StatusCodes.NORMAL
-    else:
-        status_code = StatusCodes.DANGER
-    return status_code.value
+    if isLow(status, threshold):
+        return 'LOW'
+    if isNormal(status, threshold):
+        return 'NORMAL'
+    return 'DANGER'
