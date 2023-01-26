@@ -1,7 +1,28 @@
 """Functions to prevent a nuclear meltdown."""
 
-def is_criticality_balanced(temperature, 
-                            neutrons_emitted) -> bool:
+from enum import Enum
+from typing import Union
+
+num_type = Union[int, float]
+
+
+class EfficiencyBands(Enum):
+    """Bands used to show the efficiency level."""
+    ONE = 'green'
+    TWO = 'orange'
+    THREE = 'red'
+    FOUR = 'black'
+
+
+class StatusCodes(Enum):
+    """Status codes for the fail-safe checking."""
+    LOW = 'LOW'
+    NORMAL = 'NORMAL'
+    DANGER = 'DANGER'
+
+
+def is_criticality_balanced(temperature: num_type,
+                            neutrons_emitted: num_type) -> bool:
     """Verify criticality is balanced.
 
     :param temperature: int or float - temperature value in kelvin.
@@ -13,16 +34,26 @@ def is_criticality_balanced(temperature,
     - The number of neutrons emitted per second is greater than 500.
     - The product of temperature and neutrons emitted per second is less than 500000.
     """
-    if temperature > 800:
+    if temperature >= 800:
         return False
-    if neutrons_emitted > 500000:
+    if neutrons_emitted <= 500:
         return False
-    if temperature * neutrons_emitted > 500000:
+    if temperature * neutrons_emitted >= 500000:
         return False
     return True
 
 
-def reactor_efficiency(voltage, current, theoretical_max_power):
+def generated_power(voltage: num_type, current: num_type) -> num_type:
+    """Calculate generated power.
+
+    :param voltage: int or float - voltage value.
+    :param current: int or float - current value.
+    :return: int or float - generated power.
+    """
+    return voltage * current
+
+
+def reactor_efficiency(voltage: num_type, current: num_type, theoretical_max_power: num_type) -> str:
     """Assess reactor efficiency zone.
 
     :param voltage: int or float - voltage value.
@@ -41,11 +72,23 @@ def reactor_efficiency(voltage, current, theoretical_max_power):
     (generated power/ theoretical max power)*100
     where generated power = voltage * current
     """
+    efficiency = 100 * \
+        generated_power(voltage, current) / theoretical_max_power
 
-    pass
+    if efficiency >= 80:
+        band = EfficiencyBands.ONE
+    elif efficiency >= 60:
+        band = EfficiencyBands.TWO
+    elif efficiency >= 30:
+        band = EfficiencyBands.THREE
+    else:
+        band = EfficiencyBands.FOUR
+    return band.value
 
 
-def fail_safe(temperature, neutrons_produced_per_second, threshold):
+def fail_safe(temperature: num_type,
+              neutrons_produced_per_second: num_type,
+              threshold: num_type) -> str:
     """Assess and return status code for the reactor.
 
     :param temperature: int or float - value of the temperature in kelvin.
@@ -57,5 +100,12 @@ def fail_safe(temperature, neutrons_produced_per_second, threshold):
     2. 'NORMAL' -> `temperature * neutrons per second` +/- 10% of `threshold`
     3. 'DANGER' -> `temperature * neutrons per second` is not in the above-stated ranges
     """
+    status = temperature * neutrons_produced_per_second
 
-    pass
+    if status < 0.9 * threshold:
+        status_code = StatusCodes.LOW
+    elif status < 1.1 * threshold and status > 0.9 * threshold:
+        status_code = StatusCodes.NORMAL
+    else:
+        status_code = StatusCodes.DANGER
+    return status_code.value
