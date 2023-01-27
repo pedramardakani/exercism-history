@@ -2,11 +2,11 @@
 
 from typing import Union
 
-num_type = Union[int, float]
+NumType = Union[int, float]
 
 
-def is_criticality_balanced(temperature: num_type,
-                            neutrons_emitted: num_type) -> bool:
+def is_criticality_balanced(temperature: NumType,
+                            neutrons_emitted: NumType) -> bool:
     """Verify criticality is balanced.
 
     :param temperature: int or float - temperature value in kelvin.
@@ -18,16 +18,12 @@ def is_criticality_balanced(temperature: num_type,
     - The number of neutrons emitted per second is greater than 500.
     - The product of temperature and neutrons emitted per second is less than 500000.
     """
-    if temperature >= 800:
-        return False
-    if neutrons_emitted <= 500:
-        return False
-    if temperature * neutrons_emitted >= 500000:
-        return False
-    return True
+    if (temperature < 800) and (neutrons_emitted > 500) and (temperature * neutrons_emitted < 500000):
+        return True
+    return False
 
 
-def generated_power(voltage: num_type, current: num_type) -> num_type:
+def generated_power(voltage: NumType, current: NumType) -> NumType:
     """Calculate generated power.
 
     :param voltage: int or float - voltage value.
@@ -37,7 +33,7 @@ def generated_power(voltage: num_type, current: num_type) -> num_type:
     return voltage * current
 
 
-def reactor_efficiency(voltage: num_type, current: num_type, theoretical_max_power: num_type) -> str:
+def reactor_efficiency(voltage: NumType, current: NumType, theoretical_max_power: NumType) -> str:
     """Assess reactor efficiency zone.
 
     :param voltage: int or float - voltage value.
@@ -59,36 +55,20 @@ def reactor_efficiency(voltage: num_type, current: num_type, theoretical_max_pow
     efficiency = 100 * \
         generated_power(voltage, current) / theoretical_max_power
 
-    if efficiency >= 80:
-        return 'green'
-    if efficiency >= 60:
-        return 'orange'
-    if efficiency >= 30:
-        return 'red'
-    return 'black'
+    match efficiency:
+        case e if e >= 80:
+            return 'green'
+        case e if e >= 60:
+            return 'orange'
+        case e if e >= 30:
+            return 'red'
+        case _:
+            return 'black'
 
 
-def isLow(status: num_type, threshold: num_type) -> bool:
-    """Check if is in fail-safe 'low' condition.
-
-    :param status: int or float - current status to be compared with the threshold.
-    :param threshold: int or float - current threshold.
-    :return: bool - if status should be considered low or not."""
-    return status < 0.9 * threshold
-
-
-def isNormal(status: num_type, threshold: num_type) -> bool:
-    """Check if is in fail-safe 'normal' condition.
-
-    :param status: int or float - current status to be compared with the threshold.
-    :param threshold: int or float - current threshold.
-    :return: bool - if status should be considered normal or not."""
-    return (status <= 1.1 * threshold) and (status >= 0.9 * threshold)
-
-
-def fail_safe(temperature: num_type,
-              neutrons_produced_per_second: num_type,
-              threshold: num_type) -> str:
+def fail_safe(temperature: NumType,
+              neutrons_produced_per_second: NumType,
+              threshold: NumType) -> str:
     """Assess and return status code for the reactor.
 
     :param temperature: int or float - value of the temperature in kelvin.
@@ -97,8 +77,10 @@ def fail_safe(temperature: num_type,
     :return: str - one of ('LOW', 'NORMAL', 'DANGER')."""
     status = temperature * neutrons_produced_per_second
 
-    if isLow(status, threshold):
-        return 'LOW'
-    if isNormal(status, threshold):
-        return 'NORMAL'
-    return 'DANGER'
+    match [status, threshold]:
+        case [s, t] if s < 0.9 * t:
+            return 'LOW'
+        case [s, t] if 0.9 * t <= s <= 1.1 * t:
+            return 'NORMAL'
+        case _:
+            return 'DANGER'
