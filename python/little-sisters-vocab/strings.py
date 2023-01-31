@@ -1,6 +1,5 @@
 """Functions for creating, transforming, and adding prefixes to strings."""
 
-from re import search
 from string import punctuation
 
 
@@ -38,11 +37,10 @@ def remove_suffix_ness(word: str) -> str:
 
     For example: "heaviness" becomes "heavy", but "sadness" becomes "sad".
     """
-    if search("[^aeiou]iness$", word):
-        # Check if there is a consonant before the 'i' in 'iness'. If so,
-        # we must replace 'i' with 'y'.
-        return word.removesuffix("iness") + "y"
-    return word.removesuffix("ness")
+    parsed = word.removesuffix("ness")
+    if parsed.endswith("i"):
+        parsed = parsed.removesuffix("i") + "y"
+    return parsed
 
 
 def adjective_to_verb(sentence: str, index: int) -> str:
