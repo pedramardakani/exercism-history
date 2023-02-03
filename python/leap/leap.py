@@ -6,12 +6,12 @@ def leap_year(year: int) -> bool:
 
     :param year: int - the queried year.
     :return: bool - if it is a leap year or not."""
-    if year % 100 == 0:
-        if year % 400 == 0:
+    match year:
+        case y if y % 100 == 0 and y % 400 == 0:
             return True
-        else:
+        case y if y % 100 == 0:
             return False
-    elif year % 4 == 0:
-        return True
-    else:
-        return False
+        case y if y % 4 == 0:
+            return True
+        case _:
+            return False
