@@ -10,7 +10,7 @@ def square_of_sum(number: int) -> int:
     :param number: int - final number.
     :return: int - square of sum of all numbers."""
 
-    return sum(range(number+1)) ** 2
+    return ((number + 1) * number / 2) ** 2
 
 
 def sum_of_squares(number: int) -> int:
@@ -19,7 +19,7 @@ def sum_of_squares(number: int) -> int:
     :param number: int - final number.
     :return: int - sum of all squares of numbers."""
 
-    return sum((i ** 2 for i in range(number+1)))
+    return number * (number + 1) * (2 * number + 1) / 6
 
 
 def difference_of_squares(number: int) -> int:
