@@ -3,7 +3,7 @@
 Python list documentation: https://docs.python.org/3/tutorial/datastructures.html
 """
 
-from math import floor, ceil
+from statistics import mean, median
 
 
 def get_rounds(number: int) -> list[int]:
@@ -12,8 +12,7 @@ def get_rounds(number: int) -> list[int]:
     :param number: int - current round number.
     :return: list - current round and the two that follow.
     """
-    following_rounds = 2
-    return list(range(number, number + following_rounds + 1, 1))
+    return [number, number + 1, number + 2]
 
 
 def concatenate_rounds(rounds_1: list[int], rounds_2: list[int]) -> list[int]:
@@ -36,7 +35,6 @@ def list_contains_round(rounds: list[int], number: int) -> bool:
     :param number: int - round number.
     :return: bool - was the round played?
     """
-
     return number in rounds
 
 
@@ -46,8 +44,7 @@ def card_average(hand: list[int]) -> float:
     :param hand: list - cards in hand.
     :return: float - average value of the cards in the hand.
     """
-
-    return sum(hand)/len(hand)
+    return mean(hand)
 
 
 def approx_average_is_average(hand: list[int]) -> bool:
@@ -56,9 +53,9 @@ def approx_average_is_average(hand: list[int]) -> bool:
     :param hand: list - cards in hand.
     :return: bool - does one of the approximate averages equal the `true average`?
     """
-
-    hand_average = card_average(hand)
-    return hand[len(hand)//2] == hand_average or 0.5*(hand[0]+hand[-1]) == hand_average
+    hand_average = mean(hand)
+    return (median(hand) == hand_average or
+            0.5*(hand[0]+hand[-1]) == hand_average)
 
 
 def average_even_is_average_odd(hand: list[int]) -> bool:
@@ -67,10 +64,8 @@ def average_even_is_average_odd(hand: list[int]) -> bool:
     :param hand: list - cards in hand.
     :return: bool - are even and odd averages equal?
     """
-
-    hand_half_length = len(hand)/2
-    average_odd = sum(hand[1::2])/floor(hand_half_length)
-    average_even = sum(hand[0::2])/ceil(hand_half_length)
+    average_odd = mean(hand[1::2])
+    average_even = mean(hand[0::2])
     return average_even == average_odd
 
 
@@ -80,7 +75,6 @@ def maybe_double_last(hand: list[int]) -> list[int]:
     :param hand: list - cards in hand.
     :return: list - hand with Jacks (if present) value doubled.
     """
-
     if hand[-1] == 11:
         hand[-1] = 22
 
