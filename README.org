@@ -1,0 +1,27 @@
+* What is this repository?
+
+I am keeping a track of my journey on exercism to hone my python skills.
+The good thing about exercism is the free human mentoring!
+I have had the opportunity of hearing feedback and code reviews from senior developers.
+Thank you [[https://exercism.org][exercism]]!
+
+** Licensing
+
+This code repository is licensed under GPL-3.0 or more recent versions of it.
+Please read the [[LICENSE][license file]] for more information.
+
+* What is [[https://exercism.org][exercism]]?
+
+Solve coding exercises and get mentored to develop fluency in your chosen programming languages.
+Exercism is open-source and not-for-profit.
+
+* Python track
+
+- [[python/black-jack][black-jack]]
+- [[python/card-games][card-games]]
+- [[python/difference-of-squares][difference-of-squares]]
+- [[python/leap][leap]]
+- [[python/little-sisters-essay][little-sisters-essay]]
+- [[python/little-sisters-vocab][little-sisters-vocab]]
+- [[python/meltdown-mitigation][meltdown-mitigation]]
+- [[python/two-fer][two-fer]]
