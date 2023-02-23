@@ -3,7 +3,7 @@
 Python list documentation: https://docs.python.org/3/tutorial/datastructures.html
 """
 
-from statistics import mean, median
+import statistics
 
 
 def get_rounds(number: int) -> list[int]:
@@ -12,7 +12,7 @@ def get_rounds(number: int) -> list[int]:
     :param number: int - current round number.
     :return: list - current round and the two that follow.
     """
-    return [number, number + 1, number + 2]
+    return list(range(number, number + 3))
 
 
 def concatenate_rounds(rounds_1: list[int], rounds_2: list[int]) -> list[int]:
@@ -22,10 +22,7 @@ def concatenate_rounds(rounds_1: list[int], rounds_2: list[int]) -> list[int]:
     :param rounds_2: list - second set of rounds played.
     :return: list - all rounds played.
     """
-    result = []
-    result.extend(rounds_1)
-    result.extend(rounds_2)
-    return result
+    return rounds_1 + rounds_2
 
 
 def list_contains_round(rounds: list[int], number: int) -> bool:
@@ -44,7 +41,7 @@ def card_average(hand: list[int]) -> float:
     :param hand: list - cards in hand.
     :return: float - average value of the cards in the hand.
     """
-    return mean(hand)
+    return statistics.mean(hand)
 
 
 def approx_average_is_average(hand: list[int]) -> bool:
@@ -53,9 +50,9 @@ def approx_average_is_average(hand: list[int]) -> bool:
     :param hand: list - cards in hand.
     :return: bool - does one of the approximate averages equal the `true average`?
     """
-    hand_average = mean(hand)
-    return (median(hand) == hand_average or
-            0.5*(hand[0]+hand[-1]) == hand_average)
+    mean = card_average(hand)
+    return (mean == statistics.median(hand) or
+            mean == card_average([hand[0], hand[-1]]))
 
 
 def average_even_is_average_odd(hand: list[int]) -> bool:
@@ -64,8 +61,8 @@ def average_even_is_average_odd(hand: list[int]) -> bool:
     :param hand: list - cards in hand.
     :return: bool - are even and odd averages equal?
     """
-    average_odd = mean(hand[1::2])
-    average_even = mean(hand[0::2])
+    average_odd = card_average(hand[1::2])
+    average_even = card_average(hand[0::2])
     return average_even == average_odd
 
 
