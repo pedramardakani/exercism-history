@@ -13,13 +13,13 @@ def add_me_to_the_queue(express_queue: list[str],
     """
     match ticket_type:
         case 0:
-            normal_queue.append(person_name)
-            return normal_queue
+            queue = normal_queue
         case 1:
-            express_queue.append(person_name)
-            return express_queue
+            queue = express_queue
         case _:
-            raise ValueError("Ticket type not recognized")
+            raise ValueError(f"Ticket type '{ticket_type}' not recognized")
+
+    return queue + [person_name]
 
 
 def find_my_friend(queue: list[str], friend_name: str) -> int:
