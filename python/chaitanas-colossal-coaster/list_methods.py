@@ -11,14 +11,15 @@ def add_me_to_the_queue(express_queue: list[str],
     :param person_name: str - name of person to add to a queue.
     :return: list - the (updated) queue the name was added to.
     """
-    if ticket_type == 0:
-        normal_queue.append(person_name)
-        return normal_queue
-    elif ticket_type == 1:
-        express_queue.append(person_name)
-        return express_queue
-    else:
-        raise ValueError("Ticket type not recognized")
+    match ticket_type:
+        case 0:
+            normal_queue.append(person_name)
+            return normal_queue
+        case 1:
+            express_queue.append(person_name)
+            return express_queue
+        case _:
+            raise ValueError("Ticket type not recognized")
 
 
 def find_my_friend(queue: list[str], friend_name: str) -> int:
