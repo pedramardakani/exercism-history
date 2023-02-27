@@ -24,6 +24,7 @@ Exercism is open-source and not-for-profit.
 - [[python/leap][leap]]
 - [[python/little-sisters-essay][little-sisters-essay]]
 - [[python/little-sisters-vocab][little-sisters-vocab]]
+- [[python/making-the-grade][making-the-grade]]
 - [[python/meltdown-mitigation][meltdown-mitigation]]
 - [[python/pangram][pangram]]
 - [[python/two-fer][two-fer]]
