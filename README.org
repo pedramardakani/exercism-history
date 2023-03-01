@@ -27,4 +27,5 @@ Exercism is open-source and not-for-profit.
 - [[python/making-the-grade][making-the-grade]]
 - [[python/meltdown-mitigation][meltdown-mitigation]]
 - [[python/pangram][pangram]]
+- [[python/tisbury-treasure-hunt][tisbury-treasure-hunt]]
 - [[python/two-fer][two-fer]]
