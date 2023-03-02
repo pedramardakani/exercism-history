@@ -30,7 +30,7 @@ def compare_records(azara_record: AzaraType, rui_record: RuiType) -> bool:
     :param rui_record: tuple - a (location, tuple(coordinate_1, coordinate_2), quadrant) trio.
     :return: bool - do the coordinates match?
     """
-    return rui_record[1] == convert_coordinate(azara_record[1])
+    return convert_coordinate(azara_record[1]) == rui_record[1]
 
 
 def create_record(azara_record: AzaraType, rui_record: RuiType) -> CombinedType | str:
@@ -40,10 +40,9 @@ def create_record(azara_record: AzaraType, rui_record: RuiType) -> CombinedType 
     :param rui_record: tuple - a (location, coordinate, quadrant) trio.
     :return: tuple or str - the combined record (if compatible), or the string "not a match" (if incompatible).
     """
+    record = "not a match"
     if compare_records(azara_record, rui_record):
         record = azara_record + rui_record
-    else:
-        record = "not a match"
     return record
 
 
@@ -57,6 +56,4 @@ def clean_up(combined_record_group: CombinedType) -> tuple[str, str, tuple[str, 
 
     (see HINTS.md for an example).
     """
-    result = (f"('{treasure}', '{location}', {coords}, '{variant}')"
-              for treasure, _, location, coords, variant in combined_record_group)
-    return "\n".join(result) + "\n"
+    return ''.join(f"{(record[0],) + record[2:]}\n" for record in combined_record_group)
