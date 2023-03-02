@@ -28,6 +28,7 @@ Exercism is open-source and not-for-profit.
 - [[python/meltdown-mitigation][meltdown-mitigation]]
 - [[python/pangram][pangram]]
 - [[python/resistor-color][resistor-color]]
+- [[python/resistor-color-duo][resistor-color-duo]]
 - [[python/reverse-string][reverse-string]]
 - [[python/tisbury-treasure-hunt][tisbury-treasure-hunt]]
 - [[python/two-fer][two-fer]]
