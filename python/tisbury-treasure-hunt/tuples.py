@@ -40,10 +40,9 @@ def create_record(azara_record: AzaraType, rui_record: RuiType) -> CombinedType 
     :param rui_record: tuple - a (location, coordinate, quadrant) trio.
     :return: tuple or str - the combined record (if compatible), or the string "not a match" (if incompatible).
     """
-    record = "not a match"
     if compare_records(azara_record, rui_record):
-        record = azara_record + rui_record
-    return record
+        return azara_record + rui_record
+    return "not a match"
 
 
 def clean_up(combined_record_group: CombinedType) -> tuple[str, str, tuple[str, str], str]:
@@ -56,4 +55,4 @@ def clean_up(combined_record_group: CombinedType) -> tuple[str, str, tuple[str, 
 
     (see HINTS.md for an example).
     """
-    return ''.join(f"{(record[0],) + record[2:]}\n" for record in combined_record_group)
+    return "".join(f"{(record[0],) + record[2:]}\n" for record in combined_record_group)
