@@ -14,7 +14,7 @@ def get_coordinate(record: tuple[str, str]) -> str:
     return record[1]
 
 
-def convert_coordinate(coordinate: str) -> tuple[str]:
+def convert_coordinate(coordinate: str) -> tuple[str, str]:
     """Split the given coordinate into tuple containing its individual components.
 
     :param coordinate: str - a string map coordinate
