@@ -8,8 +8,5 @@ def distance(strand_a: str, strand_b: str) -> int:
     """Calculate the Hamming Distance between two DNA strands."""
     if len(strand_a) != len(strand_b):
         raise ValueError("Strands must be of equal length.")
-    count = 0
-    for a, b in zip(strand_a, strand_b):
-        if a != b:
-            count += 1
-    return count
+    check = (a != b for a, b in zip(strand_a, strand_b))
+    return sum(check)
