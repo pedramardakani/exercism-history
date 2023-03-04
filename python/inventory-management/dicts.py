@@ -1,6 +1,6 @@
 """Functions to keep track and alter inventory."""
 
-ItemsType = list[str]
+ItemsType = list[str, ...]
 InventoryType = dict[str, int]
 
 
@@ -50,7 +50,7 @@ def remove_item(inventory: InventoryType, item: str) -> InventoryType:
     return updated_inventory
 
 
-def list_inventory(inventory: InventoryType) -> list[tuple[str, int]]:
+def list_inventory(inventory: InventoryType) -> list[tuple[str, int], ...]:
     """Create a list containing all (item_name, item_count) pairs in inventory.
 
     :param inventory: dict - an inventory dictionary.
