@@ -17,6 +17,7 @@ Exercism is open-source and not-for-profit.
 
 * Python track
 
+- [[python/bob][bob]]
 - [[python/black-jack][black-jack]]
 - [[python/card-games][card-games]]
 - [[python/chaitanas-colossal-coaster][chaitanas-colossal-coaster]]
