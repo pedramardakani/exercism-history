@@ -1,14 +1,12 @@
 """Simulate Bob the lackadaisical teenager."""
 
-import string
-
 
 def response(hey_bob: str) -> str:
     """Respond based on the tone of the received message.
 
     :param hey_bob: str - prompt.
     :return: str - Bob's answer."""
-    parsed = hey_bob.strip()
+    parsed = hey_bob.rstrip()
     if parsed == '':
         return "Fine. Be that way!"
     is_yelling = parsed.isupper()
