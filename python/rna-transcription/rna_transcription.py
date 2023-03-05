@@ -1,9 +1,6 @@
 """Exercism's RNA Transcription challenge."""
 
-translation_table = str.maketrans("T", "A")
-translation_table.update(str.maketrans("G", "C"))
-translation_table.update(str.maketrans("A", "U"))
-translation_table.update(str.maketrans("C", "G"))
+dna_to_rna_table = str.maketrans("TGAC", "ACUG")
 
 
 def to_rna(dna_strand: str):
@@ -11,4 +8,4 @@ def to_rna(dna_strand: str):
 
     :param dna_strand: str - a strand of dna.
     :return: str - the corresponding rna."""
-    return dna_strand.translate(translation_table)
+    return dna_strand.translate(dna_to_rna_table)
