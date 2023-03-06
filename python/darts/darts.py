@@ -18,9 +18,11 @@ for the entire target), the middle circle a radius of 5 units, and the inner cir
 
 import math
 
-inner_circle = 1
-middle_circle = 5
-outer_circle = 10
+game_info = {
+    "inner_circle": {"radius": 1, "score": 10},
+    "middle_circle": {"radius": 5, "score": 5},
+    "outer_circle": {"radius": 10, "score": 1},
+}
 
 
 def score(x: float, y: float) -> int:
@@ -30,10 +32,7 @@ def score(x: float, y: float) -> int:
     :param y: float - y coordinate on the board.
     :return: int - calculated score."""
     distance = math.sqrt(x**2 + y**2)
-    if distance <= inner_circle:
-        return 10
-    if distance <= middle_circle:
-        return 5
-    if distance <= outer_circle:
-        return 1
+    for _, v in game_info.items():
+        if distance <= v.get("radius"):
+            return v.get("score")
     return 0
