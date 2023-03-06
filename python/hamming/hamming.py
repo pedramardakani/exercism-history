@@ -5,8 +5,12 @@ how many mistakes occurred. This is known as the "Hamming Distance"."""
 
 
 def distance(strand_a: str, strand_b: str) -> int:
-    """Calculate the Hamming Distance between two DNA strands."""
+    """Calculate the Hamming Distance between two DNA strands.
+
+    :param strand_a: str - first strand of DNA.
+    :param strand_b: str - second strand of DNA.
+    :return: int - number of mistakes occured."""
     if len(strand_a) != len(strand_b):
         raise ValueError("Strands must be of equal length.")
-    check = (a != b for a, b in zip(strand_a, strand_b))
-    return sum(check)
+    differences = (a != b for a, b in zip(strand_a, strand_b))
+    return sum(differences)
