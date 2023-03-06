@@ -17,12 +17,15 @@ for the entire target), the middle circle a radius of 5 units, and the inner cir
 
 
 import math
+import collections
 
-game_info = {
-    "inner_circle": {"radius": 1, "score": 10},
-    "middle_circle": {"radius": 5, "score": 5},
-    "outer_circle": {"radius": 10, "score": 1},
-}
+DartsCircle = collections.namedtuple("DartsCircle", ["radius", "score"])
+
+circles = (
+    DartsCircle(1, 10),  # inner circle
+    DartsCircle(5, 5),  # middle circle
+    DartsCircle(10, 1),  # outer circle
+)
 
 
 def score(x: float, y: float) -> int:
@@ -32,7 +35,7 @@ def score(x: float, y: float) -> int:
     :param y: float - y coordinate on the board.
     :return: int - calculated score."""
     distance = math.hypot(x, y)
-    for _, v in game_info.items():
-        if distance <= v.get("radius"):
-            return v.get("score")
+    for radius, score in circles:
+        if distance <= radius:
+            return score
     return 0
