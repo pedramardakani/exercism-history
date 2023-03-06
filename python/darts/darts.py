@@ -15,13 +15,12 @@ for the entire target), the middle circle a radius of 5 units, and the inner cir
  a radius of 1. Of course, they are all centered at the same point (that is, 
  the circles are concentric defined by the coordinates (0, 0)."""
 
-
 import math
 import collections
 
-DartsCircle = collections.namedtuple("DartsCircle", ["radius", "score"])
+DartsCircle = collections.namedtuple("DartsCircle", ["radius", "points"])
 
-circles = (
+circles: tuple[DartsCircle, ...] = (
     DartsCircle(1, 10),  # inner circle
     DartsCircle(5, 5),  # middle circle
     DartsCircle(10, 1),  # outer circle
@@ -35,7 +34,7 @@ def score(x: float, y: float) -> int:
     :param y: float - y coordinate on the board.
     :return: int - calculated score."""
     distance = math.hypot(x, y)
-    for radius, score in circles:
+    for radius, points in circles:
         if distance <= radius:
-            return score
+            return points
     return 0
