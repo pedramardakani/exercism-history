@@ -20,11 +20,15 @@ import collections
 
 DartsCircle = collections.namedtuple("DartsCircle", ["radius", "points"])
 
-circles: tuple[DartsCircle, ...] = (
+circles: list[DartsCircle, ...] = [
     DartsCircle(1, 10),  # inner circle
     DartsCircle(5, 5),  # middle circle
     DartsCircle(10, 1),  # outer circle
-)
+]
+
+# The circles must be sorted in the ascending order by their radius
+# otherwise the scoring logic fails.
+circles.sort()
 
 
 def score(x: float, y: float) -> int:
