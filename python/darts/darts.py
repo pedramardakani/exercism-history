@@ -31,7 +31,7 @@ def score(x: float, y: float) -> int:
     :param x: float - x coordinate on the board.
     :param y: float - y coordinate on the board.
     :return: int - calculated score."""
-    distance = math.sqrt(x**2 + y**2)
+    distance = math.hypot(x, y)
     for _, v in game_info.items():
         if distance <= v.get("radius"):
             return v.get("score")
