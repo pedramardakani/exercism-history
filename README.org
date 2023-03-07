@@ -20,6 +20,7 @@ Exercism is open-source and not-for-profit.
 - [[python/bob][bob]]
 - [[python/black-jack][black-jack]]
 - [[python/card-games][card-games]]
+- [[python/cater-waiter][cater-waiter]]
 - [[python/chaitanas-colossal-coaster][chaitanas-colossal-coaster]]
 - [[python/darts][darts]]
 - [[python/difference-of-squares][difference-of-squares]]
