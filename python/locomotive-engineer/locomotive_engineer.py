@@ -1,11 +1,9 @@
 """Functions which helps the locomotive engineer to keep track of the train."""
 
-import collections
-
-Wagons = collections.namedtuple("Wagons", ["ID", "color"])
+WagonList = list[int, ...]
 
 
-def get_list_of_wagons(*ids: int) -> list[int, ...]:
+def get_list_of_wagons(*ids: int) -> WagonList:
     """Return a list of wagons.
 
     :param: arbitrary number of wagons.
@@ -14,8 +12,8 @@ def get_list_of_wagons(*ids: int) -> list[int, ...]:
     return list(ids)
 
 
-def fix_list_of_wagons(each_wagons_id: list[int, ...],
-                       missing_wagons: list[int, ...]) -> list[int, ...]:
+def fix_list_of_wagons(each_wagons_id: WagonList,
+                       missing_wagons: WagonList) -> WagonList:
     """Fix the list of wagons.
 
     :parm each_wagons_id: list - the list of wagons.
@@ -23,20 +21,17 @@ def fix_list_of_wagons(each_wagons_id: list[int, ...],
     :return: list - list of wagons.
     """
     wagon_1, wagon_2, loco_id, *rest = each_wagons_id
-    # Use '*XXX,' pattern to get a 'list' of unpacked items instead of a 'tuple'.
-    *ordered_wagons, = loco_id, *missing_wagons, *rest, wagon_1, wagon_2
-    return ordered_wagons
+    return [loco_id, *missing_wagons, *rest, wagon_1, wagon_2]
 
 
-def add_missing_stops(routing: dict, **kwargs: dict) -> dict:
+def add_missing_stops(routing: dict, **stops: dict) -> dict:
     """Add missing stops to route dict.
 
     :param route: dict - the dict of routing information.
     :param: arbitrary number of stops.
     :return: dict - updated route dictionary.
     """
-    stops = [city for city in kwargs.values()]
-    return {**routing, "stops": stops}
+    return {**routing, "stops": list(stops.values())}
 
 
 def extend_route_information(route: dict, more_route_information: dict) -> dict:
