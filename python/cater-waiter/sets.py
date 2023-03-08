@@ -23,7 +23,7 @@ def clean_ingredients(dish_name: str,
 
     This function should return a `tuple` with the name of the dish as the first item,
     followed by the de-duped `set` of ingredients as the second item."""
-    return (dish_name, set(dish_ingredients))
+    return dish_name, set(dish_ingredients)
 
 
 def check_drinks(drink_name: str, drink_ingredients: list) -> str:
@@ -50,8 +50,8 @@ def categorize_dish(dish_name: str, dish_ingredients: list) -> str:
     This function should return a string with the `dish name: <CATEGORY>` (which meal category the dish belongs to).
     `<CATEGORY>` can be any one of  (VEGAN, VEGETARIAN, PALEO, KETO, or OMNIVORE).
     All dishes will "fit" into one of the categories imported from `sets_categories_data.py`"""
-    for category, ingredients_set in categories.items():
-        if ingredients_set.issuperset(dish_ingredients):
+    for category, ingredients in categories.items():
+        if ingredients.issuperset(dish_ingredients):
             return f"{dish_name}: {category}"
 
 
@@ -65,7 +65,7 @@ def tag_special_ingredients(dish: tuple[str, list[str, ...]]) -> tuple[str, [str
     For the purposes of this exercise, all allergens or special ingredients that need to be tracked are in the
     SPECIAL_INGREDIENTS constant imported from `sets_categories_data.py`."""
     dish_name, *ingredients = dish
-    return (dish_name, SPECIAL_INGREDIENTS.intersection(*ingredients))
+    return dish_name, SPECIAL_INGREDIENTS.intersection(*ingredients)
 
 
 def compile_ingredients(dishes: list[set, ...]) -> set[str, ...]:
