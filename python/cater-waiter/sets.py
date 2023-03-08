@@ -40,7 +40,7 @@ def check_drinks(drink_name: str, drink_ingredients: list) -> str:
     return f"{drink_name} {suffix}"
 
 
-def categorize_dish(dish_name: str, dish_ingredients: list) -> str:
+def categorize_dish(dish_name: str, dish_ingredients: list) -> str | None:
     """Categorize `dish_name` based on `dish_ingredients`.
 
     :param dish_name: str - dish to be categorized.
@@ -53,6 +53,7 @@ def categorize_dish(dish_name: str, dish_ingredients: list) -> str:
     for category, ingredients in categories.items():
         if ingredients.issuperset(dish_ingredients):
             return f"{dish_name}: {category}"
+    return None
 
 
 def tag_special_ingredients(dish: tuple[str, list[str, ...]]) -> tuple[str, [str, ...]]:
