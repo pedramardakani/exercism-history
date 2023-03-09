@@ -9,6 +9,7 @@ class Alien:
     (class)total_aliens_created: int
     x_coordinate: int - Position on the x-axis.
     y_coordinate: int - Position on the y-axis.
+Point = typing.NamedTuple(
     health: int - Amount of health points.
 
     Methods
@@ -19,7 +20,31 @@ class Alien:
     collision_detection(other): Implementation TBD.
     """
 
-    pass
+    total_aliens_created: int = 0
+
+    def __init__(self, x_coordinate: float, y_coordinate: float):
+        # Effects on class
+        Alien.total_aliens_created += 1
+
+        # Effects on the object itself
+        self.health = 3
+        self.x_coordinate = x_coordinate
+        self.y_coordinate = y_coordinate
+
+    def hit(self) -> None:
+        if self.health > 0:
+            self.health -= 1
+
+    def is_alive(self) -> bool:
+        return self.health > 0
+
+    def teleport(self, x_coordinate: float, y_coordinate: float) -> None:
+        self.x_coordinate = x_coordinate
+        self.y_coordinate = y_coordinate
+
+    def collision_detection(self, some_argument):
+        pass
 
 
-#TODO:  create the new_aliens_collection() function below to call your Alien class with a list of coordinates.
+def new_aliens_collection(start_positions: list[tuple[float, float]]) -> list[Alien]:
+    return [Alien(x, y) for x, y in start_positions]
