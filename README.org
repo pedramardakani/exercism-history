@@ -25,6 +25,7 @@ Exercism is open-source and not-for-profit.
 - [[python/darts][darts]]
 - [[python/difference-of-squares][difference-of-squares]]
 - [[python/ellens-alien-game][ellens-alien-game]]
+- [[python/etl][etl]]
 - [[python/hamming][hamming]]
 - [[python/inventory-management][inventory-management]]
 - [[python/isogram][isogram]]
