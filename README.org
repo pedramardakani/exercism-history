@@ -36,6 +36,7 @@ Exercism is open-source and not-for-profit.
 - [[python/making-the-grade][making-the-grade]]
 - [[python/meltdown-mitigation][meltdown-mitigation]]
 - [[python/pangram][pangram]]
+- [[python/raindrops][raindrops]]
 - [[python/resistor-color][resistor-color]]
 - [[python/resistor-color-duo][resistor-color-duo]]
 - [[python/reverse-string][reverse-string]]
