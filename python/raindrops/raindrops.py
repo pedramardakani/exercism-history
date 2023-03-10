@@ -7,7 +7,11 @@ sounds = {
 }
 
 
-def convert(number: int) -> int | str:
+def convert(number: int) -> str:
+    """Produce raindrop sounds based on factors.
+
+    :param number: int - the input number.
+    :return: str - added sounds or the number itself."""
     result = ""
     for factor, sound in sounds.items():
         if number % factor == 0:
