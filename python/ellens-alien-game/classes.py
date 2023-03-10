@@ -47,4 +47,4 @@ Point = typing.NamedTuple(
 
 
 def new_aliens_collection(start_positions: list[tuple[float, float]]) -> list[Alien]:
-    return [Alien(x, y) for x, y in start_positions]
+    return [Alien(x_coords, y_coords) for x_coords, y_coords in start_positions]
