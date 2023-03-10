@@ -1,6 +1,6 @@
 """The raindrops challenge on the exercism website."""
 
-sounds = {
+factor_sound = {
     3: "Pling",
     5: "Plang",
     7: "Plong",
@@ -12,11 +12,9 @@ def convert(number: int) -> str:
 
     :param number: int - the input number.
     :return: str - added sounds or the number itself."""
-    result = ""
-    for factor, sound in sounds.items():
-        if number % factor == 0:
-            result += sound
+    sounds = (sound for factor, sound in factor_sound.items()
+              if number % factor == 0)
+    result = "".join(sounds)
     if result:
         return result
-    else:
-        return str(number)
+    return str(number)
