@@ -4,6 +4,6 @@
 def transform(legacy_data: dict[int, str]) -> dict[str, int]:
     return {
         letter.lower(): score
-        for score in legacy_data
-        for letter in legacy_data[score]
+        for score, letters in legacy_data.items()
+        for letter in letters
     }
