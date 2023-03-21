@@ -2,10 +2,6 @@
 
 
 def sum_of_multiples(limit: int, multiples: list[int]) -> int:
-    final_set = set()
-    for item in multiples:
-        if item == 0:
-            continue
-        final_set = final_set.union(
-            {item * factor for factor in range(1+limit//item) if item * factor < limit})
-    return sum(final_set)
+    # Purge '0' from the multiples list 'if' present.
+    factors = set(multiples).difference({0})
+    return sum({factor * multiple for factor in factors for multiple in range(1 + limit // factor) if factor * multiple < limit})
