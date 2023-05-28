@@ -4,7 +4,7 @@ def classify(number: int) -> str:
     :param number: int a positive integer
     :return: str the classification of the input integer
     """
-    if number <= 0:
+    if number <= 0 or type(number) is not int:
         raise ValueError("Classification is only possible for positive integers.")
     divisors = (div for div in range(1, number//2 + 1) if number % div == 0)
     match sum(divisors):
