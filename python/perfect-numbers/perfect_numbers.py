@@ -12,6 +12,7 @@ example, the aliquot sum of 15 is (1 + 3 + 5) = 9
 [aliquot-sum]: https://en.wikipedia.org/wiki/Aliquot_sum
 """
 
+
 def classify(number: int) -> str:
     """ A perfect number equals the sum of its positive divisors.
 
@@ -19,9 +20,14 @@ def classify(number: int) -> str:
     :return: str the classification of the input integer
     """
     if number <= 0 or type(number) is not int:
-        raise ValueError("Classification is only possible for positive integers.")
-    divisors = (div for div in range(1, number//2 + 1) if number % div == 0)
-    match sum(divisors):
+        raise ValueError("Classification is only "
+                         "possible for positive integers.")
+    max_range = int(number ** 0.5) + 1
+    f_low = [div for div in range(1, max_range) if number % div == 0]
+    f_high = map(lambda x: number/x, f_low)
+    factors = set().union(f_low, f_high)
+    factors.discard(number)
+    match sum(factors):
         case aliquot_sum if aliquot_sum > number:
             return "abundant"
         case aliquot_sum if aliquot_sum < number:
