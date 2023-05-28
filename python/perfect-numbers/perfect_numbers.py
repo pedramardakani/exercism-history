@@ -27,12 +27,12 @@ def classify(number: int) -> str:
     # the factor pairs, and calculate the rest. Take 24 for example.
     # Its factors are 1, 2, 3, 4, 6, 8, 12, and 24. In this case, 1
     # and 24 are pairs, so are 2 and 12, 3 and 8, and lastly 4 and 6.
-    max_range = int(number ** 0.5) + 1
-    f_low = [div for div in range(1, max_range) if number % div == 0]
-    f_high = map(lambda x: number/x, f_low)
-    factors = set().union(f_low, f_high)
-    factors.discard(number)
-    match sum(factors):
+    factors = set()
+    for divisor in range(1, int(number ** 0.5) + 1):
+        if number % divisor == 0:
+            factors.update((divisor, number//divisor))
+    # Exclude the given number itself from factors
+    match sum(factors) - number:
         case aliquot_sum if aliquot_sum > number:
             return "abundant"
         case aliquot_sum if aliquot_sum < number:
