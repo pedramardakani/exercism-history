@@ -10,13 +10,12 @@ def is_valid(isbn: str) -> bool:
     # ISBN must be 10 digits
     if len(parsed) != 10:
         return False
-    # Validate the check digit
+    # Replace the check digit if any
     if parsed[-1].lower() == "x":
         parsed[-1] = "10"
-    # Discard ISBN if contains non-digits
-    if not all((char.isdigit() for char in parsed)):
-        return False
-    # Calculate by the ISBN verification formula
-    total = sum((int(digit) * (10 - index)
-                for index, digit in enumerate(parsed)))
+    total = 0
+    for index, digit in enumerate(parsed):
+        if not digit.isdigit():
+            return False
+        total += int(digit) * (10 - index)
     return total % 11 == 0
