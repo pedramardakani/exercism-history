@@ -25,4 +25,4 @@ class SpaceAge:
             setattr(self, f"on_{planet}", self.calculate_age(ratio))
 
     def calculate_age(self, ratio: float) -> float:
-        return lambda ratio=ratio: round(self.seconds / (ratio * self.EARTH_YEAR), 2)
+        return lambda r=ratio: round(self.seconds / (r * self.EARTH_YEAR), 2)
