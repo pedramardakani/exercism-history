@@ -7,7 +7,7 @@ class SpaceAge:
     EARTH_YEAR = 365.25 * 24 * 60 * 60
 
     # Each orbital period is equals to XXX earth years
-    COEFFICIENT_EARTH = {
+    ORBITAL_PER_EARTH_YEAR = {
         "MERCURY": 0.2408467,
         "VENUS": 0.61519726,
         "EARTH": 1,
@@ -21,29 +21,44 @@ class SpaceAge:
     def __init__(self, seconds: int):
         self.seconds = seconds
 
-    def calc(self, coefficient: float) -> int:
+    def calculate_age(self, coefficient: float) -> float:
         return round(self.seconds / (coefficient * self.EARTH_YEAR), 2)
 
-    def on_mercury(self) -> int:
-        return self.calc(self.COEFFICIENT_EARTH["MERCURY"])
+    # Decorates functions following the "on_XXX" pattern
+    def planet(func):
+        def wrapper(self):
+            name = func.__name__.removeprefix("on_").upper()
+            return self.calculate_age(self.ORBITAL_PER_EARTH_YEAR[name])
+        return wrapper
 
-    def on_venus(self) -> int:
-        return self.calc(self.COEFFICIENT_EARTH["VENUS"])
+    @planet
+    def on_mercury(self) -> float:
+        pass
 
-    def on_earth(self) -> int:
-        return self.calc(self.COEFFICIENT_EARTH["EARTH"])
+    @planet
+    def on_venus(self) -> float:
+        pass
 
-    def on_mars(self) -> int:
-        return self.calc(self.COEFFICIENT_EARTH["MARS"])
+    @planet
+    def on_earth(self) -> float:
+        pass
 
-    def on_jupiter(self) -> int:
-        return self.calc(self.COEFFICIENT_EARTH["JUPITER"])
+    @planet
+    def on_mars(self) -> float:
+        pass
 
-    def on_saturn(self) -> int:
-        return self.calc(self.COEFFICIENT_EARTH["SATURN"])
+    @planet
+    def on_jupiter(self) -> float:
+        pass
 
-    def on_uranus(self) -> int:
-        return self.calc(self.COEFFICIENT_EARTH["URANUS"])
+    @planet
+    def on_saturn(self) -> float:
+        pass
 
-    def on_neptune(self) -> int:
-        return self.calc(self.COEFFICIENT_EARTH["NEPTUNE"])
+    @planet
+    def on_uranus(self) -> float:
+        pass
+
+    @planet
+    def on_neptune(self) -> float:
+        pass
