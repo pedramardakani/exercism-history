@@ -31,6 +31,7 @@ Exercism is open-source and not-for-profit.
 - [[python/gigasecond][gigasecond]]
 - [[python/hamming][hamming]]
 - [[python/inventory-management][inventory-management]]
+- [[python/isbn-verifier][isbn-verifier]]
 - [[python/isogram][isogram]]
 - [[python/leap][leap]]
 - [[python/little-sisters-essay][little-sisters-essay]]
