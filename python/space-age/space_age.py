@@ -7,58 +7,22 @@ class SpaceAge:
     EARTH_YEAR = 365.25 * 24 * 60 * 60
 
     # Each orbital period is equals to XXX earth years
-    ORBITAL_PER_EARTH_YEAR = {
-        "MERCURY": 0.2408467,
-        "VENUS": 0.61519726,
-        "EARTH": 1,
-        "MARS": 1.8808158,
-        "JUPITER": 11.862615,
-        "SATURN": 29.447498,
-        "URANUS": 84.016846,
-        "NEPTUNE": 164.79132,
+    RATIO_TO_EARTH = {
+        "mercury": 0.2408467,
+        "venus": 0.61519726,
+        "earth": 1,
+        "mars": 1.8808158,
+        "jupiter": 11.862615,
+        "saturn": 29.447498,
+        "uranus": 84.016846,
+        "neptune": 164.79132,
     }
 
     def __init__(self, seconds: int):
         self.seconds = seconds
+        # Create all the "on_PLANET_NAME" methods here
+        for planet, ratio in self.RATIO_TO_EARTH.items():
+            setattr(self, f"on_{planet}", self.calculate_age(ratio))
 
-    def calculate_age(self, coefficient: float) -> float:
-        return round(self.seconds / (coefficient * self.EARTH_YEAR), 2)
-
-    # Decorates functions following the "on_XXX" pattern
-    def planet(func):
-        def wrapper(self):
-            name = func.__name__.removeprefix("on_").upper()
-            return self.calculate_age(self.ORBITAL_PER_EARTH_YEAR[name])
-        return wrapper
-
-    @planet
-    def on_mercury(self) -> float:
-        pass
-
-    @planet
-    def on_venus(self) -> float:
-        pass
-
-    @planet
-    def on_earth(self) -> float:
-        pass
-
-    @planet
-    def on_mars(self) -> float:
-        pass
-
-    @planet
-    def on_jupiter(self) -> float:
-        pass
-
-    @planet
-    def on_saturn(self) -> float:
-        pass
-
-    @planet
-    def on_uranus(self) -> float:
-        pass
-
-    @planet
-    def on_neptune(self) -> float:
-        pass
+    def calculate_age(self, ratio: float) -> float:
+        return lambda ratio=ratio: round(self.seconds / (ratio * self.EARTH_YEAR), 2)
