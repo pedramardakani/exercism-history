@@ -23,6 +23,7 @@ Exercism is open-source and not-for-profit.
 - [[python/card-games][card-games]]
 - [[python/cater-waiter][cater-waiter]]
 - [[python/chaitanas-colossal-coaster][chaitanas-colossal-coaster]]
+- [[python/collatz-conjecture][collatz-conjecture]]
 - [[python/darts][darts]]
 - [[python/difference-of-squares][difference-of-squares]]
 - [[python/ellens-alien-game][ellens-alien-game]]
