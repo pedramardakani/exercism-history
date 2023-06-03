@@ -1,7 +1,13 @@
 """Exercism's Collatz Conjecture Challenge."""
 
 
-def steps(number: int):
+def steps(number: int) -> int:
+    """ Return the number of steps it takes to reach 1 from any given positive
+    integer based on the Collatz cojecture.
+
+    :param number: int - any positive integer.
+    :return: int - steps to reach 1.
+    """
     if type(number) is not int or number <= 0:
         raise ValueError("Only positive integers are allowed")
     count = 0
