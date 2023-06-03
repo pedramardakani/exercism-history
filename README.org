@@ -52,3 +52,4 @@ Exercism is open-source and not-for-profit.
 - [[python/sum-of/multiples][sum-of-multiples]]
 - [[python/tisbury-treasure-hunt][tisbury-treasure-hunt]]
 - [[python/two-fer][two-fer]]
+- [[python/wordy][wordy]]
