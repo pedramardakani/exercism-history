@@ -27,8 +27,9 @@ def answer(question: str) -> int | float:
     print(expression)
     # The replaced operators must not have whitespace
     iterator = iter(expression.split())
-    # Force evaluation from left to right
-    a = next(iterator)
+    # Force evaluation from left to right. "lhs" stands for "left-hand-side"
+    # and "rhs" for " right-hand-side".
+    lhs = next(iterator)
     while True:
         # Check for next operator
         try:
@@ -41,12 +42,12 @@ def answer(question: str) -> int | float:
             raise ValueError("unknown operation")
         # Check for next operand
         try:
-            operand = next(iterator)
+            rhs = next(iterator)
         except StopIteration:
             raise ValueError("syntax error")
         # Check for valid operand which might be negative or positive
-        if not isnumber(operand):
+        if not isnumber(rhs):
             raise ValueError("syntax error")
         # Evaluate the expression so far
-        a = int(a).__getattribute__(operator)(int(operand))
-    return int(a)
+        lhs = int(lhs).__getattribute__(operator)(int(rhs))
+    return int(lhs)
