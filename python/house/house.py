@@ -21,8 +21,8 @@ def gen_verse(index: int):
     verse = [verses[0]]
     for v in verses[1:index+1]:
         verse.insert(1, v)
-    yield ' '.join(verse)
+    return ' '.join(verse)
 
 
 def recite(start_verse: int, end_verse: int) -> list[str]:
-    return [next(gen_verse(i)) for i in range(start_verse, end_verse+1)]
+    return [gen_verse(i) for i in range(start_verse, end_verse+1)]
