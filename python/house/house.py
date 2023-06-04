@@ -18,10 +18,7 @@ verses = (
 
 
 def gen_verse(index: int):
-    verse = [verses[0]]
-    for v in verses[1:index+1]:
-        verse.insert(1, v)
-    return ' '.join(verse)
+    return f"{verses[0]} {' '.join([verses[i] for i in range(index, 0, -1)])}"
 
 
 def recite(start_verse: int, end_verse: int) -> list[str]:
