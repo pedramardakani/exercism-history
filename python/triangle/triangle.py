@@ -6,10 +6,11 @@ side_t = list[int | float]
 
 
 def istriangle(sides: side_t) -> bool:
-    if len(sides) != 3 or not all(sides):
+    if (len(sides) != 3
+            or not all((s > 0 for s in sides))
+            or sum(sides) < 2 * max(sides)):
         return False
-    ss = sorted(sides)
-    return sum(ss[:2]) >= ss[2]
+    return True
 
 
 def check_triangle(func: Callable) -> Callable | False:
@@ -19,9 +20,7 @@ def check_triangle(func: Callable) -> Callable | False:
     proceed otherwise.
     """
     def wrapper(*args):
-        if istriangle(*args):
-            return func(*args)
-        return False
+        return istriangle(*args) and func(*args)
     return wrapper
 
 
