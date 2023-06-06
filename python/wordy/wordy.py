@@ -13,7 +13,8 @@ def isnumber(duck: str) -> bool:
     return duck.removeprefix("-").removeprefix("+").isdigit()
 
 
-def answer(question: str) -> int | float:
+def parse_question(question: str) -> list[str]:
+    """Process string for evaluation."""
     # Check for a valid question
     if not question.startswith("What is"):
         raise ValueError("unknown operation")
@@ -24,11 +25,14 @@ def answer(question: str) -> int | float:
     # Replace the words with the actual mathematical operation
     for name, dunder in OPS.items():
         expression = expression.replace(name, dunder)
-    print(expression)
-    # The replaced operators must not have whitespace
-    iterator = iter(expression.split())
+    return expression.split()
+
+
+def answer(question: str) -> float:
+    expression = parse_question(question)
     # Force evaluation from left to right. "lhs" stands for "left-hand-side"
     # and "rhs" for " right-hand-side".
+    iterator = iter(expression)
     lhs = next(iterator)
     while True:
         # Check for next operator
@@ -49,5 +53,5 @@ def answer(question: str) -> int | float:
         if not isnumber(rhs):
             raise ValueError("syntax error")
         # Evaluate the expression so far
-        lhs = int(lhs).__getattribute__(operator)(int(rhs))
-    return int(lhs)
+        lhs = float(lhs).__getattribute__(operator)(float(rhs))
+    return float(lhs)
