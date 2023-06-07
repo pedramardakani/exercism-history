@@ -48,6 +48,7 @@ Exercism is open-source and not-for-profit.
 - [[python/resistor-color-duo][resistor-color-duo]]
 - [[python/reverse-string][reverse-string]]
 - [[python/rna-transcription][rna-transcription]]
+- [[python/rotational-cipher][rotational-cipher]]
 - [[python/secret-handshake][secret-handshake]]
 - [[python/space-age][space-age]]
 - [[python/sum-of/multiples][sum-of-multiples]]
