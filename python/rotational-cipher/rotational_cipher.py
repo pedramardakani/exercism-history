@@ -1,23 +1,15 @@
 """Exercism's rotational cypher challenge (aka Caesar Cypher)"""
 
-import string
-
-MAX_UPPERCASE = ord('Z')
 MIN_UPPERCASE = ord('A')
-MAX_LOWERCASE = ord('z')
 MIN_LOWERCASE = ord('a')
 
 
 def rotate(text: str, key: int) -> str:
 
     def helper(i: str) -> str:
-        if i not in string.ascii_letters:
-            return i
-        rotated = ord(i) + key
-        if i.isupper() and rotated > MAX_UPPERCASE:
-            rotated -= MAX_UPPERCASE - MIN_UPPERCASE + 1
-        if i.islower() and rotated > MAX_LOWERCASE:
-            rotated -= MAX_LOWERCASE - MIN_LOWERCASE + 1
-        return chr(rotated)
+        if i.isalpha():
+            offset = MIN_UPPERCASE if i.isupper() else MIN_LOWERCASE
+            return chr((ord(i) + key - offset) % 26 + offset)
+        return i
 
     return ''.join((helper(item) for item in text))
