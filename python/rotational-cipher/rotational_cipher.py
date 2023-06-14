@@ -9,7 +9,6 @@ MIN_LOWERCASE = ord('a')
 
 
 def rotate(text: str, key: int) -> str:
-    initial = list(text)
 
     def helper(i: str) -> str:
         if i not in string.ascii_letters:
@@ -21,4 +20,4 @@ def rotate(text: str, key: int) -> str:
             rotated -= MAX_LOWERCASE - MIN_LOWERCASE + 1
         return chr(rotated)
 
-    return ''.join(list(map(helper, initial)))
+    return ''.join((helper(item) for item in text))
