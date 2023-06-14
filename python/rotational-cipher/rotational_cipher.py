@@ -4,12 +4,14 @@ MIN_UPPERCASE = ord('A')
 MIN_LOWERCASE = ord('a')
 
 
+def rotate_char(char: str, key: int) -> str:
+    """Rotate a single character only."""
+    if char.isalpha():
+        offset = MIN_UPPERCASE if char.isupper() else MIN_LOWERCASE
+        return chr((ord(char) + key - offset) % 26 + offset)
+    return char
+
+
 def rotate(text: str, key: int) -> str:
-
-    def helper(i: str) -> str:
-        if i.isalpha():
-            offset = MIN_UPPERCASE if i.isupper() else MIN_LOWERCASE
-            return chr((ord(i) + key - offset) % 26 + offset)
-        return i
-
-    return ''.join((helper(item) for item in text))
+    """Rotate an entire text."""
+    return ''.join((rotate_char(item, key) for item in text))
