@@ -21,21 +21,23 @@ def filter(function: typing.Callable, items: list) -> list:
 
 
 def length(items: list) -> int:
-    return len(items)
+    return sum(1 for _ in items)
 
 
 def map(function: typing.Callable, items: list) -> list:
     return [function(item) for item in items]
 
 
-def foldl(function: typing.Callable, items: list, initial: int | float) -> int | float:
+def foldl(function: typing.Callable, items: list,
+          initial: int | float) -> int | float:
     result = initial
     for item in items:
         result = function(result, item)
     return result
 
 
-def foldr(function: typing.Callable, items: list, initial: int | float) -> int | float:
+def foldr(function: typing.Callable, items: list,
+          initial: int | float) -> int | float:
     return foldl(function, reversed(items), initial)
 
 
