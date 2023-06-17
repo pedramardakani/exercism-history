@@ -1,30 +1,41 @@
-def append(list1, list2):
-    pass
+"""Exercism's List-ops challenge."""
 
 
-def concat(lists):
-    pass
+def append(items_1: list, items_2: list) -> list:
+    return [*items_1, *items_2]
 
 
-def filter(function, list):
-    pass
+def _concat_helper(lists: list):
+    for item in lists:
+        yield from item
 
 
-def length(list):
-    pass
+def concat(lists: list):
+    return list(_concat_helper(lists))
 
 
-def map(function, list):
-    pass
+def filter(function: callable, items: list) -> list:
+    return [item for item in items if function(item)]
 
 
-def foldl(function, list, initial):
-    pass
+def length(items: list):
+    return len(items)
 
 
-def foldr(function, list, initial):
-    pass
+def map(function: callable, items: list) -> list:
+    return [function(item) for item in items]
 
 
-def reverse(list):
-    pass
+def foldl(function: callable, items: list, initial: int | float) -> int | float:
+    result = initial
+    for item in items:
+        result = function(result, item)
+    return result
+
+
+def foldr(function: callable, items: list, initial: int | float) -> int | float:
+    return foldl(function, reversed(items), initial)
+
+
+def reverse(items) -> list:
+    return items[::-1]
