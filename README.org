@@ -17,6 +17,7 @@ Exercism is open-source and not-for-profit.
 
 * Python track
 
+- [[python/acronym][acronym]]
 - [[python/anagram][anagram]]
 - [[python/binary-search][binary-search]]
 - [[python/black-jack][black-jack]]
