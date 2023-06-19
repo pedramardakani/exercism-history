@@ -4,6 +4,5 @@ import re
 
 
 def abbreviate(words: str) -> str:
-    cleaned = re.sub(r'[^a-zA-Z\-\s]', "", words)
-    parsed = re.split(r'\W', cleaned)
-    return ''.join((word[0].upper() for word in parsed if word))
+    parsed = re.sub(r"[-_]", " ", words).split()
+    return ''.join((word[0].upper() for word in parsed))
