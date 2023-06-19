@@ -46,6 +46,7 @@ Exercism is open-source and not-for-profit.
 - [[python/meltdown-mitigation][meltdown-mitigation]]
 - [[python/pangram][pangram]]
 - [[python/perfect-numbers][perfect-numbers]]
+- [[python/pig-latin][pig-latin]]
 - [[python/raindrops][raindrops]]
 - [[python/resistor-color][resistor-color]]
 - [[python/resistor-color-duo][resistor-color-duo]]
