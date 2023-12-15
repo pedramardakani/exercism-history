@@ -17,4 +17,4 @@ def pigify(word: str) -> str:
 
 def translate(text: str) -> str:
     """Pig-latin an entire text."""
-    return ' '.join((pigify(word) for word in text.split()))
+    return ' '.join(map(pigify, text.split()))
