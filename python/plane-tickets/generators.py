@@ -68,4 +68,5 @@ def generate_codes(seat_numbers, flight_id):
 
     """
 
-    pass
+    for seat in seat_numbers:
+        yield f"{seat}{flight_id}".ljust(12, "0")
