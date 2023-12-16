@@ -39,7 +39,11 @@ def generate_seats(number):
 
     """
 
-    pass
+    number_seats_in_row = len(SEAT_LETTERS)
+    letters = generate_seat_letters(number)
+    for index, letter in enumerate(letters):
+        row = (index//number_seats_in_row)+1
+        yield f"{row + 1 if row > 12 else row}{letter}"
 
 
 def assign_seats(passengers):
