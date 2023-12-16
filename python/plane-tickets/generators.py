@@ -56,7 +56,7 @@ def assign_seats(passengers):
 
     """
     seats = generate_seats(len(passengers))
-    return {passenger: seats.__next__() for passenger in passengers}
+    return {passenger: next(seats) for passenger in passengers}
 
 
 def generate_codes(seat_numbers, flight_id):
