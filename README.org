@@ -17,46 +17,85 @@ Exercism is open-source and not-for-profit.
 
 * Python track
 
-- [[python/acronym][acronym]]
-- [[python/anagram][anagram]]
-- [[python/binary-search][binary-search]]
-- [[python/black-jack][black-jack]]
-- [[python/bob][bob]]
-- [[python/card-games][card-games]]
-- [[python/cater-waiter][cater-waiter]]
-- [[python/chaitanas-colossal-coaster][chaitanas-colossal-coaster]]
+** Basics
+- [[python/guidos-gorgeous-lasagna][guidos-gorgeous-lasagna]]
+
+** Numbers
+- [[python/currency-exchange][currency-exchange]]
+- [[python/grains][grains]]
+- [[python/armstrong-numbers][armstrong-numbers]]
 - [[python/collatz-conjecture][collatz-conjecture]]
+
+** Bools
+- [[python/ghost-gobble-arcade-game][ghost-gobble-arcade-game]]
+- [[python/leap][leap]]
+- [[python/triangle][triangle]]
+
+** Conditionals
+- [[python/meltdown-mitigation][meltdown-mitigation]]
+- [[python/bob][bob]]
+- [[python/raindrops][raindrops]]
+- [[python/pig-latin][pig-latin]]
+
+** Comparisons
+- [[python/black-jack][black-jack]]
 - [[python/darts][darts]]
-- [[python/difference-of-squares][difference-of-squares]]
-- [[python/ellens-alien-game][ellens-alien-game]]
+- [[python/perfect-numbers][perfect-numbers]]
+
+** Strings
+- [[python/little-sisters-essay][little-sisters-essay]]
+- [[python/pangram][pangram]]
+- [[python/isogram][isogram]]
+- [[python/isbn-verifier][isbn-verifier]]
+- [[python/rotational-cipher][rotational-cipher]]
+
+** String methods
+- [[python/little-sisters-vocab][little-sisters-vocab]]
+- [[python/rna-transcription][rna-transcription]]
+- [[python/wordy][wordy]]
+
+** Lists
+- [[python/card-games][card-games]]
+- [[python/resistor-color][resistor-color]]
+- [[python/resistor-color-duo][resistor-color-duo]]
+
+** List methods
+- [[python/chaitanas-colossal-coaster][chaitanas-colossal-coaster]]
+- [[python/secret-handshake][secret-handshake]]
+- [[python/anagram][anagram]]
+
+** Loops
+- [[python/making-the-grade][making-the-grade]]
+- [[python/binary-search][binary-search]]
+
+** Tuples
+- [[python/tisbury-treasure-hunt][tisbury-treasure-hunt]]
+
+** Dicts
+- [[python/inventory-management][inventory-management]]
 - [[python/etl][etl]]
+- [[python/space-age][space-age]]
+
+** Unpacking and multiple assignment
+- [[python/locomotive-engineer][locomotive-engineer]]
+
+** Sets
+- [[python/cater-waiter][cater-waiter]]
+- [[python/sum-of/multiples][sum-of-multiples]]
+
+** Classes
+- [[python/ellens-alien-game][ellens-alien-game]]
+
+** Generators
+- [[python/plane-tickets][plane-tickets]]
+
+** Others
+- [[python/acronym][acronym]]
+- [[python/difference-of-squares][difference-of-squares]]
 - [[python/flatten-array][flatten-array]]
 - [[python/gigasecond][gigasecond]]
 - [[python/hamming][hamming]]
 - [[python/house][house]]
-- [[python/inventory-management][inventory-management]]
-- [[python/isbn-verifier][isbn-verifier]]
-- [[python/isogram][isogram]]
-- [[python/leap][leap]]
-- [[python/little-sisters-essay][little-sisters-essay]]
-- [[python/little-sisters-vocab][little-sisters-vocab]]
 - [[python/list-ops][list-ops]]
-- [[python/locomotive-engineer][locomotive-engineer]]
-- [[python/making-the-grade][making-the-grade]]
-- [[python/meltdown-mitigation][meltdown-mitigation]]
-- [[python/pangram][pangram]]
-- [[python/perfect-numbers][perfect-numbers]]
-- [[python/pig-latin][pig-latin]]
-- [[python/raindrops][raindrops]]
-- [[python/resistor-color][resistor-color]]
-- [[python/resistor-color-duo][resistor-color-duo]]
 - [[python/reverse-string][reverse-string]]
-- [[python/rna-transcription][rna-transcription]]
-- [[python/rotational-cipher][rotational-cipher]]
-- [[python/secret-handshake][secret-handshake]]
-- [[python/space-age][space-age]]
-- [[python/sum-of/multiples][sum-of-multiples]]
-- [[python/tisbury-treasure-hunt][tisbury-treasure-hunt]]
-- [[python/triangle][triangle]]
 - [[python/two-fer][two-fer]]
-- [[python/wordy][wordy]]
