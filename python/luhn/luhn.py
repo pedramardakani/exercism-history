@@ -12,5 +12,5 @@ class Luhn:
             return False
         for i in range(length-2, -1, -2):
             doubled = 2*cleaned[i]
-            cleaned[i] = doubled-9 if doubled > 9 else doubled
+            cleaned[i] = doubled - 9*(doubled > 9)
         return sum(cleaned) % 10 == 0
