@@ -2,11 +2,11 @@ class Luhn:
     def __init__(self, card_num: str):
         self.original = card_num
         tmp = card_num.replace(" ", "")
-        self.clean = [] if not tmp.isdigit() else [int(c) for c in tmp]
+        # Use a tuple so that 'clean' is not mutated unintentionally
+        self.clean = () if not tmp.isdigit() else tuple(int(c) for c in tmp)
 
     def valid(self) -> bool:
-        # Must use a shallow copy so that the 'self.clean' is not mutated
-        cleaned = self.clean.copy()
+        cleaned = list(self.clean)
         length = len(cleaned)
         if length < 2:
             return False
