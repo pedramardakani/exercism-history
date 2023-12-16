@@ -7,6 +7,6 @@ class Luhn:
     def valid(self) -> bool:
         if len(self.clean) < 2:
             return False
-        rev = reversed(self.clean)
-        tmp = (x + (i % 2 != 0)*(x-9*(x >= 5)) for i, x in enumerate(rev))
-        return sum(tmp) % 10 == 0
+        res = (item + (index % 2 != 0)*(item-9*(item >= 5))
+               for index, item in enumerate(reversed(self.clean)))
+        return sum(res) % 10 == 0
