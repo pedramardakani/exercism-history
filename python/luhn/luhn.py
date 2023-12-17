@@ -1,3 +1,4 @@
+import functools as ft
 import itertools as it
 
 
@@ -15,6 +16,7 @@ class Luhn:
         """Operation that should be done on even indices"""
         return x * 2 - 9 * (x > 4)
 
+    @ft.cache
     def valid(self) -> bool:
         odd_even = it.cycle((self.odd_operation, self.even_operation))
         return len(self.clean) > 1 and sum(
