@@ -7,11 +7,11 @@ class Luhn:
         tmp = card_num.replace(" ", "")
         self.clean = () if not tmp.isdigit() else tuple(int(c) for c in tmp)
 
-    def odd_operation(self, x):
+    def odd_operation(self, x: int) -> int:
         """Operation that should be done on odd indices"""
         return x
 
-    def even_operation(self, x):
+    def even_operation(self, x: int) -> int:
         """Operation that should be done on even indices"""
         return x * 2 - 9 * (x > 4)
 
