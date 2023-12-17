@@ -85,6 +85,7 @@ Exercism is open-source and not-for-profit.
 
 ** Classes
 - [[python/ellens-alien-game][ellens-alien-game]]
+- [[python/luhn][luhn]]
 
 ** Generators
 - [[python/plane-tickets][plane-tickets]]
