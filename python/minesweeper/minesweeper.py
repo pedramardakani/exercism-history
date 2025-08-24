@@ -1,5 +1,4 @@
 def gen_steps(array: list[str], x: int, y: int):
-    steps = []
     for dy in (-1, 0, 1):
         for dx in (-1, 0, 1):
             if dy == dx == 0:
@@ -8,8 +7,7 @@ def gen_steps(array: list[str], x: int, y: int):
                 continue
             if x+dx >= len(array) or y+dy >= len(array[0]):
                 continue
-            steps.append((x+dx, y+dy))
-    return steps # yield
+            yield (x+dx, y+dy)
 
 def annotate(minefield):
     annotated = [
