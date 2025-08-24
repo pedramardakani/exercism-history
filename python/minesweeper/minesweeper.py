@@ -15,9 +15,8 @@ def annotate(minefield):
     annotated = [
         [col == "*" for col in row] for row in minefield
     ]
-    total_cols = len(minefield[0])
     for x, row in enumerate(minefield):
-        if len(row) != total_cols:
+        if len(row) != len(minefield[0]):
             raise ValueError("The board is invalid with current input.")
         for y, col in enumerate(row):
             steps = gen_steps(minefield, x, y)
