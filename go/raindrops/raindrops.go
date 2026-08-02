@@ -2,21 +2,24 @@ package raindrops
 
 import "fmt"
 
-var soundMap = map[int]string{
-	3: "Pling",
-	5: "Plang",
-	7: "Plong",
+type RainSound struct {
+	num int
+	sound string
+}
+
+// Array items must stay sorted by "num"
+var rainSoundArray = [3]RainSound{
+	{num: 3, sound: "Pling"},
+	{num: 5, sound: "Plang"},
+	{num: 7, sound: "Plong"},
 }
 
 func Convert(number int) string {
 	var sound string = ""
 
-	// DO NOT DO THIS!
-	// Iteration order over a map is not guaranteed to be deterministic!
-	// https://go.dev/blog/maps#iteration-order
-	for k, v := range soundMap {
-		if number%k == 0 {
-			sound += v
+	for _, item := range rainSoundArray {
+		if number % item.num == 0 {
+			sound += item.sound
 		}
 	}
 	if sound == "" {
