@@ -1,0 +1,29 @@
+{
+  "authors": [
+    "magic003"
+  ],
+  "contributors": [
+    "bitfield",
+    "ekingery",
+    "ferhatelmas",
+    "hilary",
+    "leenipper",
+    "sebito91",
+    "eklatzer"
+  ],
+  "files": {
+    "solution": [
+      "collatz_conjecture.go"
+    ],
+    "test": [
+      "collatz_conjecture_test.go",
+      "cases_test.go"
+    ],
+    "example": [
+      ".meta/example.go"
+    ]
+  },
+  "blurb": "Calculate the number of steps to reach 1 using the Collatz conjecture.",
+  "source": "Wikipedia",
+  "source_url": "https://en.wikipedia.org/wiki/Collatz_conjecture"
+}
