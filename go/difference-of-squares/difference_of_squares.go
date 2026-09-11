@@ -1,10 +1,7 @@
 package differenceofsquares
 
 func SquareOfSum(n int) int {
-	sum := 0
-	for i := n; i > 0; i-- {
-		sum += i
-	}
+	sum := (n * (n + 1)) / 2
 	return sum * sum
 }
 
