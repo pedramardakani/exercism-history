@@ -1,0 +1,24 @@
+{
+  "authors": [
+    "leenipper"
+  ],
+  "contributors": [
+    "bitfield",
+    "ekingery",
+    "eklatzer"
+  ],
+  "files": {
+    "solution": [
+      "darts.go"
+    ],
+    "test": [
+      "darts_test.go",
+      "cases_test.go"
+    ],
+    "example": [
+      ".meta/example.go"
+    ]
+  },
+  "blurb": "Calculate the points scored in a single toss of a Darts game.",
+  "source": "Inspired by an exercise created by a professor Della Paolera in Argentina"
+}
