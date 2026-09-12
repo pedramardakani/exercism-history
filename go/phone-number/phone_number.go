@@ -19,19 +19,19 @@ func Number(phoneNumber string) (string, error) {
 			continue
 		}
 		if position >= maxDigits {
-			return "", fmt.Errorf("Expected %d digits, received more. Pos %d rune %c", maxDigits, position, character)
+			return "", fmt.Errorf("Expected %d digits, received more", maxDigits)
 		}
 		if (position == 6 || position == 9) && character < '2' {
 			return "", fmt.Errorf("Invalid Area code/Local number, got '%c'", character)
 		}
 		if character < '0' || character > '9' {
-			return "", fmt.Errorf("Expected digits, received '%c'.", character)
+			return "", fmt.Errorf("Expected digits, received '%c'", character)
 		}
 		normalized = string(character) + normalized
 		position++
 	}
-	if nDigits := len(normalized); nDigits != maxDigits {
-		return "", fmt.Errorf("Expected %d digits, received '%d'", maxDigits, nDigits)
+	if len(normalized) != maxDigits {
+		return "", fmt.Errorf("Expected %d digits, received less", maxDigits)
 	}
 	return normalized, nil
 }
