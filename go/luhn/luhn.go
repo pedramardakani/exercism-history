@@ -1,33 +1,31 @@
 package luhn
 
-import "fmt"
-
-func parseId(id string) (string, error) {
+func parseId(id string) string {
 	var parsed string = ""
 	for _, character := range id {
 		if character == ' ' {
 			continue
 		}
 		if character < '0' || character > '9' {
-			return "", fmt.Errorf("Expected digits, received '%v'", character)
+			return ""
 		}
 		parsed += string(character)
 	}
-	return parsed, nil
+	return parsed
 }
 
 // Prepare the digit to be calculated in the Luhn sum. Double, if greater than 9, subtract 9.
 func prepareLuhnDigit(digit int) int {
 	newDigit := digit * 2
 	if newDigit > 9 {
-		return newDigit - 9
+		newDigit -= 9
 	}
 	return newDigit
 }
 
 func Valid(id string) bool {
-	parsedId, err := parseId(id)
-	if err != nil || len(parsedId) < 2 {
+	parsedId := parseId(id)
+	if len(parsedId) < 2 {
 		return false
 	}
 
