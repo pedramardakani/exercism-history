@@ -34,8 +34,7 @@ func Valid(id string) bool {
 	}
 
 	sum := 0
-	for index := nDigits - 1; index >= 0; index-- {
-		digit := parsedId[index]
+	for index, digit := range parsedId {
 		isSecond := (nDigits-index)%2 == 0
 		if isSecond {
 			// the second digit should be processed
@@ -44,7 +43,6 @@ func Valid(id string) bool {
 			// the first digit doesn't need doubling
 			sum += digit
 		}
-		isSecond = !isSecond
 	}
 
 	return sum%10 == 0
