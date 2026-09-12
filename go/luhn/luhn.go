@@ -1,8 +1,8 @@
 package luhn
 
 // normalizeStringOfDigits - Normalize a string of digits, return empty string if invalid
-func normalizeStringOfDigits(id string) string {
-	var parsed string = ""
+func normalizeStringOfDigits(id string) []int {
+	parsed := make([]int, 0)
 	for _, character := range id {
 		// empty whitespace is tolerated
 		if character == ' ' {
@@ -10,9 +10,9 @@ func normalizeStringOfDigits(id string) string {
 		}
 		// non-digit characters are not tolerated
 		if character < '0' || character > '9' {
-			return ""
+			return nil
 		}
-		parsed += string(character)
+		parsed = append(parsed, int(character-'0'))
 	}
 	return parsed
 }
@@ -35,7 +35,7 @@ func Valid(id string) bool {
 
 	sum := 0
 	for index := nDigits - 1; index >= 0; index-- {
-		digit := int(parsedId[index] - '0')
+		digit := parsedId[index]
 		isSecond := (nDigits-index)%2 == 0
 		if isSecond {
 			// the second digit should be processed
