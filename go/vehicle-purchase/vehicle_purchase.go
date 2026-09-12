@@ -5,8 +5,7 @@ import "slices"
 // NeedsLicense determines whether a license is needed to drive a type of vehicle. Only "car" and "truck" require a license.
 func NeedsLicense(kind string) bool {
 	licensedVehicles := []string{"car", "truck"}
-	index := slices.Index(licensedVehicles, kind)
-	return index != -1
+	return slices.Contains(licensedVehicles, kind)
 }
 
 // ChooseVehicle recommends a vehicle for selection. It always recommends the vehicle that comes first in lexicographical order.
