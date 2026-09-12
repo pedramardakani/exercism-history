@@ -1,11 +1,14 @@
 package luhn
 
-func parseId(id string) string {
+// normalizeStringOfDigits - Normalize a string of digits, return empty string if invalid
+func normalizeStringOfDigits(id string) string {
 	var parsed string = ""
 	for _, character := range id {
+		// empty whitespace is tolerated
 		if character == ' ' {
 			continue
 		}
+		// non-digit characters are not tolerated
 		if character < '0' || character > '9' {
 			return ""
 		}
@@ -14,7 +17,7 @@ func parseId(id string) string {
 	return parsed
 }
 
-// Prepare the digit to be calculated in the Luhn sum. Double, if greater than 9, subtract 9.
+// prepareLuhnDigit - Prepare the digit to be calculated in the Luhn sum.
 func prepareLuhnDigit(digit int) int {
 	newDigit := digit * 2
 	if newDigit > 9 {
@@ -24,15 +27,16 @@ func prepareLuhnDigit(digit int) int {
 }
 
 func Valid(id string) bool {
-	parsedId := parseId(id)
-	if len(parsedId) < 2 {
+	parsedId := normalizeStringOfDigits(id)
+	nDigits := len(parsedId)
+	if nDigits < 2 {
 		return false
 	}
 
 	sum := 0
-	isSecond := false
-	for index := len(parsedId) - 1; index >= 0; index-- {
+	for index := nDigits - 1; index >= 0; index-- {
 		digit := int(parsedId[index] - '0')
+		isSecond := (nDigits-index)%2 == 0
 		if isSecond {
 			// the second digit should be processed
 			sum += prepareLuhnDigit(digit)
