@@ -42,12 +42,10 @@ func Valid(id string) bool {
 	nDigits := len(parsedId)
 	sum := 0
 	for index, digit := range parsedId {
-		isSecond := (nDigits-index)%2 == 0
-		if isSecond {
-			// the second digit should be processed
+		isEvenDigitFromEnd := (nDigits-index)%2 == 0
+		if isEvenDigitFromEnd {
 			sum += prepareLuhnDigit(digit)
 		} else {
-			// the first digit doesn't need doubling
 			sum += digit
 		}
 	}
