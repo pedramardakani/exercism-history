@@ -12,7 +12,7 @@ func prepareLuhnDigit(digit int) int {
 func Valid(id string) bool {
 	sum := 0
 	position := 0
-	for index := len(id)-1; index >= 0; index-- {
+	for index := len(id) - 1; index >= 0; index-- {
 		char := id[index]
 		if char == ' ' {
 			continue
@@ -20,7 +20,7 @@ func Valid(id string) bool {
 		if char < '0' || char > '9' {
 			return false
 		}
-		digit := int(char-'0')
+		digit := int(char - '0')
 		if position%2 == 0 {
 			sum += digit
 		} else {
@@ -30,9 +30,5 @@ func Valid(id string) bool {
 	}
 
 	// single digits are invalid
-	if position <= 1 {
-		return false
-	}
-
-	return sum%10 == 0
+	return position > 1 && sum%10 == 0
 }
