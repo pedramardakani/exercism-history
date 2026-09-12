@@ -1,29 +1,5 @@
 package luhn
 
-import "fmt"
-
-// normalizeStringOfDigits - Normalize a string of digits, return empty string if invalid
-func normalizeStringOfDigits(id string) ([]int, error) {
-	parsed := make([]int, 0)
-	for _, character := range id {
-		// empty whitespace is tolerated
-		if character == ' ' {
-			continue
-		}
-		// non-digit characters are not tolerated
-		if character < '0' || character > '9' {
-			return nil, fmt.Errorf("Expected digits, received '%c'", character)
-		}
-		parsed = append(parsed, int(character-'0'))
-	}
-
-	if nDigits := len(parsed); nDigits <= 1 {
-		return nil, fmt.Errorf("At least two digits expected, received '%d'", nDigits)
-	}
-
-	return parsed, nil
-}
-
 // prepareLuhnDigit - Prepare the digit to be calculated in the Luhn sum.
 func prepareLuhnDigit(digit int) int {
 	newDigit := digit * 2
@@ -34,20 +10,28 @@ func prepareLuhnDigit(digit int) int {
 }
 
 func Valid(id string) bool {
-	parsedId, err := normalizeStringOfDigits(id)
-	if err != nil {
-		return false
+	sum := 0
+	position := 0
+	for index := len(id)-1; index >= 0; index-- {
+		char := id[index]
+		if char == ' ' {
+			continue
+		}
+		if char < '0' || char > '9' {
+			return false
+		}
+		digit := int(char-'0')
+		if position%2 == 0 {
+			sum += digit
+		} else {
+			sum += prepareLuhnDigit(digit)
+		}
+		position++
 	}
 
-	nDigits := len(parsedId)
-	sum := 0
-	for index, digit := range parsedId {
-		isEvenDigitFromEnd := (nDigits-index)%2 == 0
-		if isEvenDigitFromEnd {
-			sum += prepareLuhnDigit(digit)
-		} else {
-			sum += digit
-		}
+	// single digits are invalid
+	if position <= 1 {
+		return false
 	}
 
 	return sum%10 == 0
